@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const int musicCount = 27;
 
+
 class MusicList extends StatelessWidget {
   const MusicList({super.key});
   
@@ -12,17 +13,17 @@ class MusicList extends StatelessWidget {
         appBar: AppBar(
           title: Container(
             padding: EdgeInsets.all(27),
-            child: Text('Intergalactic Music'),
+            child: Text('Intergalactic Music List'),
           ),
           backgroundColor: Colors.deepPurple,
           elevation: 90,
-          leading: IconButton(
-            onPressed: () {
-              debugPrint('Menu Tapped');
-            },
-            icon: Icon(Icons.menu, color: Colors.white70),
-            // padding: EdgeInsets.all(27),
-          ),
+          // leading: IconButton(
+          //   onPressed: () {
+          //     debugPrint('Menu Tapped');
+          //   },
+          //   icon: Icon(Icons.keyboard_backspace, color: Colors.white70),
+          //   // padding: EdgeInsets.all(27),
+          // ),
           actions: [
             IconButton(
               onPressed: () {
