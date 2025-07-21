@@ -19,7 +19,10 @@ class FirstPage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
-              onTap: () => Navigator.pushNamed(context, '/'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/');
+              },
             ),
             ListTile(
               leading: Icon(Icons.list),
