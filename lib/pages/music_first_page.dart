@@ -11,7 +11,29 @@ class FirstPage extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
         elevation: 90,
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        backgroundColor: Colors.grey[300],
+        child: Column(
+          children: [
+            DrawerHeader(child: Icon(Icons.music_note, size: 50)),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () => Navigator.pushNamed(context, '/'),
+            ),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: Text('Music List'),
+              onTap: () => Navigator.pushNamed(context, '/musicList'),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () => Navigator.pushNamed(context, '/settings'),
+            ),
+          ],
+        ),
+      ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
