@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
 const int musicCount = 27;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MusicList extends StatelessWidget {
+  const MusicList({super.key});
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.deepPurple[200],
         appBar: AppBar(
           title: Container(
@@ -58,7 +53,6 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
