@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/pages/music_first_page.dart';
-import 'package:notes_app/pages/music_list.dart';
-import 'package:notes_app/pages/profile_page.dart';
-import 'package:notes_app/pages/settings_page.dart';
-
+import 'package:notes_app/pages/todo_page.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -16,12 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FirstPage(),
-      routes: {
-        '/musicList': (context) => const MusicList(),
-        '/settings': (context) => const SettingsPage(),
-        '/profile': (context) => const ProfilePage(),
-      },
+      home: TodoPage(),
     );
   }
 }
