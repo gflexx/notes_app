@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: TodoPage(),
       theme: ThemeData(
-        primarySwatch: Colors.yellow
+        primarySwatch: Colors.yellow,
+        useMaterial3: false,
     
       ),
     );
