@@ -25,10 +25,12 @@ class TodigTile extends StatelessWidget {
               onChanged: onChanged,
               activeColor: Colors.black54,
             ),
-            Text(
-              taskName!,
-              style: TextStyle(
-                decoration: taskCompleted! ? TextDecoration.lineThrough : null
+            Flexible(
+              child: Text(
+                taskName!,
+                style: TextStyle(
+                  decoration: taskCompleted! ? TextDecoration.lineThrough : null
+                ),
               ),
             ),
           ],
