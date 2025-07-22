@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/pages/home_page.dart';
+import 'package:notes_app/pages/music_list.dart';
+import 'package:notes_app/pages/profile_page.dart';
 
-class FirstPage extends StatelessWidget {
+// ignore: must_be_immutable
+class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
+
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  int currentPage = 0;
+
+  final List<Widget> pages = const [
+    HomePage(),
+    MusicList(),
+    ProfilePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Intergalactic Arts'),
-        backgroundColor: Colors.deepPurple,
         elevation: 90,
       ),
       drawer: Drawer(
-        backgroundColor: Colors.grey[300],
         child: Column(
           children: [
             DrawerHeader(child: Icon(Icons.music_note, size: 50)),
@@ -48,16 +63,15 @@ class FirstPage extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
+        currentIndex: currentPage,
+        onTap: (int index) {
+          setState(() {
+            currentPage = index;
+          });
+        },
+
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/musicList');
-          },
-          child: Text('Go to Intergalactic Music List'),
-        ),
-      ),
-      backgroundColor: Colors.deepPurple[200],
+      body: pages[currentPage]
     );
   }
 }
