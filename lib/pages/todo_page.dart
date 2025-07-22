@@ -10,23 +10,24 @@ class TodoPage extends StatefulWidget {
 }
 
 class _TodoPageState extends State<TodoPage> {
-  List toDig = [
-    ['Dig Carrots', false],
-    ['Plant Maize', true],
-    ['Water Plants', false],
-    ['Harvest Potatoes', true],
-    ['Weed Garden', false],
-    ['Fertilize Soil', true],
-    ['Prune Trees', false],
-    ['Mulch Beds', true],
-    ['Compost Kitchen Waste', false],
-    ['Plan Next Season', true],
-  ];
+  final TextEditingController _controller = TextEditingController();
 
+  List toDig = [];
+
+  // checkbox change
   void checkBoxChanged(bool? value, int index) {
     setState(() {
       toDig[index][1] = value;
     });
+  }
+
+  // save task
+  void saveTask(){
+    setState(() {
+      toDig.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
   }
 
   void createNewTask() {
@@ -34,7 +35,11 @@ class _TodoPageState extends State<TodoPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return DialogBox();
+        return DialogBox(
+          controller: _controller,
+          onSave: saveTask,
+          onExit: () => Navigator.of(context).pop(),
+        );
       },
     );
   }
