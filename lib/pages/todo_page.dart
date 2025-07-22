@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/utils/dialog_box.dart';
 import 'package:notes_app/utils/todig_tile.dart';
 
 class TodoPage extends StatefulWidget {
@@ -9,7 +10,6 @@ class TodoPage extends StatefulWidget {
 }
 
 class _TodoPageState extends State<TodoPage> {
-
   List toDig = [
     ['Dig Carrots', false],
     ['Plant Maize', true],
@@ -29,26 +29,40 @@ class _TodoPageState extends State<TodoPage> {
     });
   }
 
+  void createNewTask() {
+    debugPrint('Create New Task');
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.yellow[200],
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        title: Text('To Dig List'),
+        title: Text('TO DIG LIST'),
         elevation: 0,
         centerTitle: true,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: createNewTask,
+        child: Icon(Icons.add, color: Colors.black),
+      ),
       body: ListView.builder(
         itemCount: toDig.length,
-        itemBuilder: (context, index){
+        itemBuilder: (context, index) {
           return TodigTile(
             taskName: toDig[index][0],
             taskCompleted: toDig[index][1],
             onChanged: (value) => checkBoxChanged(value, index),
           );
-        }
-      )
+        },
+      ),
     );
   }
 }
