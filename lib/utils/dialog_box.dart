@@ -7,17 +7,18 @@ class DialogBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Colors.yellow[300],
-      title: Text('Create New Dig Task', textAlign: TextAlign.center),
+      title: Text('Create New Task', textAlign: TextAlign.center),
       content: SizedBox(
-        height: 207,
+        height: 180,
         child: Column(
           children: [
             TextField(
+              cursorColor: Colors.black,
               decoration: InputDecoration(
                 hintText: 'Add Task',
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(9)
-                )
+                  borderRadius: BorderRadius.circular(9),
+                ),
               ),
             ),
           ],
