@@ -30,12 +30,24 @@ class FirstPage extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, '/musicList'),
             ),
             ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              onTap: () => Navigator.pushNamed(context, '/profile'),
+            ),
+            ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
               onTap: () => Navigator.pushNamed(context, '/settings'),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
       ),
       body: Center(
         child: ElevatedButton(
