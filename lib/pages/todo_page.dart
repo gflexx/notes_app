@@ -10,6 +10,25 @@ class TodoPage extends StatefulWidget {
 
 class _TodoPageState extends State<TodoPage> {
 
+  List toDig = [
+    ['Dig Carrots', false],
+    ['Plant Maize', true],
+    ['Water Plants', false],
+    ['Harvest Potatoes', true],
+    ['Weed Garden', false],
+    ['Fertilize Soil', true],
+    ['Prune Trees', false],
+    ['Mulch Beds', true],
+    ['Compost Kitchen Waste', false],
+    ['Plan Next Season', true],
+  ];
+
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      toDig[index][1] = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,29 +39,15 @@ class _TodoPageState extends State<TodoPage> {
         elevation: 0,
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          TodigTile(
-            taskCompleted: false,
-            taskName: "Dig Carrots",
-            onChanged: (p0){},
-          ),
-          TodigTile(
-            taskCompleted: true,
-            taskName: "Plant Maize",
-            onChanged: (p0){},
-          ),
-          TodigTile(
-            taskCompleted: false,
-            taskName: "Potatoes",
-            onChanged: (p0){},
-          ),
-          TodigTile(
-            taskCompleted: true,
-            taskName: "Find Geese",
-            onChanged: (p0){},
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: toDig.length,
+        itemBuilder: (context, index){
+          return TodigTile(
+            taskName: toDig[index][0],
+            taskCompleted: toDig[index][1],
+            onChanged: (value) => checkBoxChanged(value, index),
+          );
+        }
       )
     );
   }
