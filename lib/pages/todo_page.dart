@@ -30,6 +30,7 @@ class _TodoPageState extends State<TodoPage> {
     Navigator.of(context).pop();
   }
 
+  // create task
   void createNewTask() {
     debugPrint('Create New Task');
     showDialog(
@@ -42,6 +43,13 @@ class _TodoPageState extends State<TodoPage> {
         );
       },
     );
+  }
+
+  // delete taks
+  void deleteTask(int index){
+    setState(() {
+      toDig.removeAt(index);
+    });
   }
 
   @override
@@ -65,6 +73,7 @@ class _TodoPageState extends State<TodoPage> {
             taskName: toDig[index][0],
             taskCompleted: toDig[index][1],
             onChanged: (value) => checkBoxChanged(value, index),
+            deleteAction: (context) => deleteTask(index),
           );
         },
       ),
