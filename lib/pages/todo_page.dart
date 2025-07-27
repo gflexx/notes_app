@@ -32,7 +32,6 @@ class _TodoPageState extends State<TodoPage> {
 
   // create task
   void createNewTask() {
-    debugPrint('Create New Task');
     showDialog(
       context: context,
       builder: (context) {
