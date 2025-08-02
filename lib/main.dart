@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/pages/todo_page.dart';
-void main() {
+
+void main() async {
+  // init hive
+  await Hive.initFlutter();
+
+  // open box with wildcard var
+  var _ = await Hive.openBox('todoBox');
+
   runApp(const MyApp());
 }
-
-const int musicCount = 27;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,10 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: TodoPage(),
-      theme: ThemeData(
-        primarySwatch: Colors.yellow,
-        useMaterial3: false,
-      ),
+      theme: ThemeData(primarySwatch: Colors.yellow, useMaterial3: false),
     );
   }
 }

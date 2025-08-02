@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:notes_app/data/database.dart';
 import 'package:notes_app/utils/dialog_box.dart';
 import 'package:notes_app/utils/todig_tile.dart';
 
@@ -12,21 +14,36 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends State<TodoPage> {
   final TextEditingController _controller = TextEditingController();
 
-  List toDig = [];
+  final toDoBox = Hive.box('todoBox');
+  ToDoDatabase db = ToDoDatabase();
+
+  @override
+  void initState() {
+    // create default on first load
+    if (toDoBox.get('TODOLIST') == null) {
+      db.createInitialData();
+    } else {
+      // load data from database
+      db.loadData();
+    }
+    super.initState();
+  }
 
   // checkbox change
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      toDig[index][1] = value;
+      db.toDig[index][1] = value;
     });
+    db.updateDatabase();
   }
 
   // save task
-  void saveTask(){
+  void saveTask() {
     setState(() {
-      toDig.add([_controller.text, false]);
+      db.toDig.add([_controller.text, false]);
       _controller.clear();
     });
+    db.updateDatabase();
     Navigator.of(context).pop();
   }
 
@@ -45,10 +62,11 @@ class _TodoPageState extends State<TodoPage> {
   }
 
   // delete taks
-  void deleteTask(int index){
+  void deleteTask(int index) {
     setState(() {
-      toDig.removeAt(index);
+      db.toDig.removeAt(index);
     });
+    db.updateDatabase();
   }
 
   @override
@@ -57,7 +75,7 @@ class _TodoPageState extends State<TodoPage> {
       backgroundColor: Colors.yellow[200],
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        title: Text('TO DIG LIST'),
+        title: Text('TO DO'),
         elevation: 0,
         centerTitle: true,
       ),
@@ -66,11 +84,11 @@ class _TodoPageState extends State<TodoPage> {
         child: Icon(Icons.add, color: Colors.black),
       ),
       body: ListView.builder(
-        itemCount: toDig.length,
+        itemCount: db.toDig.length,
         itemBuilder: (context, index) {
           return TodigTile(
-            taskName: toDig[index][0],
-            taskCompleted: toDig[index][1],
+            taskName: db.toDig[index][0],
+            taskCompleted: db.toDig[index][1],
             onChanged: (value) => checkBoxChanged(value, index),
             deleteAction: (context) => deleteTask(index),
           );
