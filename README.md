@@ -1,8 +1,15 @@
-# notes_app
+# Notes App
 
-Flutter CRUD practice with hive db, this project is learing flutter basics
+A simple Flutter CRUD app using Hive DB. Built to practice Flutter basics.
 
 ## Getting Started
 
-[!Description](screenshots/ui.png)
+Clone the repo, then run:
+
+```bash
+flutter pub get
+```
+
+## Preview
+![Description](screenshots/ui.png)
 
